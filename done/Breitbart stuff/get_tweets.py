@@ -1,5 +1,3 @@
-#!/usr/bin/env python3.7
-
 """
 Get ids of tweets
 """
@@ -7,17 +5,17 @@ Get ids of tweets
 import twitter
 import json
 
-CONSUMER_KEY = 'IghI8fP7qGo8wzPukFqtC0WQC'
-CONSUMER_SECRET ='MlxWDaUXy00GLoW6w9ipczfD8Y4veP1qKujJ7Cfp8d39e6AzWr'
-TOKEN = '15693746-HHDMz6E4o6epMTC9qWwo9aAipDGsZZYz3QHLH3w9U'
-TOKEN_SECRET = 'z5KeM6diAVuxKMpX4wFHxt1e2MHJIooHKYsVvRZHG81k4'
+CONSUMER_KEY = 'RB2uGEKWHjFHwRSGuIzZ6mItx'
+CONSUMER_SECRET ='930KYZtksZ1hXeJRHa7R4eCjDUAbvz5BlumTGUSiDrr6Eu9RCK'
+TOKEN = '15693746-LwtO5dxDOYOe82tGeEP7jYTDRKKuPT3e35bHvvqk5'
+TOKEN_SECRET = '0XpaxHAcpQJKWCCbK37TkJA8iF5XDEBa6TeveUQPyWCNx'
 
 def get_tweets(api=None, screen_name=None):
     timeline = api.GetUserTimeline(screen_name=screen_name, count=1)
     earliest_tweet = min(timeline, key=lambda x: x.id).id
     # prinst("getting tweets before:", earliest_tweet)
 
-    while True:
+    while False:
         tweets = api.GetUserTimeline(
             screen_name=screen_name, max_id=earliest_tweet, count=200
         )
@@ -43,5 +41,6 @@ timeline = get_tweets(api=api, screen_name=screen_name)
 
 with open('timeline.json', 'w+') as f:
     for tweet in timeline:
-        f.write(str(tweet._json['id']))
+        print(tweet._json)
+        assert False
         f.write('\n')
